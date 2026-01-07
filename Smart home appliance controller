@@ -1,0 +1,59 @@
+#include <iostream>
+using namespace std;
+
+class SmartHome {
+private:
+    bool lightOn;
+    bool fanOn;
+    int temperature;
+
+public:
+    SmartHome() {
+        lightOn = false;
+        fanOn = false;
+        temperature = 24;
+    }
+
+    void turnLightOn() { lightOn = true; }
+    void turnLightOff() { lightOn = false; }
+
+    void turnFanOn() { fanOn = true; }
+    void turnFanOff() { fanOn = false; }
+
+    void setTemperature(int temp) {
+        temperature = temp;
+    }
+
+    void showStatus() {
+        cout << "\n--- Smart Home Status ---\n";
+        cout << "Light: " << (lightOn ? "ON" : "OFF") << endl;
+        cout << "Fan: " << (fanOn ? "ON" : "OFF") << endl;
+        cout << "Temperature: " << temperature << "°C\n";
+    }
+};
+
+int main() {
+    SmartHome home;  
+    int choice, temp;
+
+    do {
+        cout << "\n1. Light ON\n2. Light OFF\n3. Fan ON\n4. Fan OFF\n";
+        cout << "5. Set Temperature\n6. Show Status\n0. Exit\n";
+        cin >> choice;
+
+        switch(choice) {
+            case 1: home.turnLightOn(); break;
+            case 2: home.turnLightOff(); break;
+            case 3: home.turnFanOn(); break;
+            case 4: home.turnFanOff(); break;
+            case 5:
+                cout << "Enter temperature: ";
+                cin >> temp;
+                home.setTemperature(temp);
+                break;
+            case 6: home.showStatus(); break;
+        }
+    } while(choice != 0);
+
+    return 0;
+}
